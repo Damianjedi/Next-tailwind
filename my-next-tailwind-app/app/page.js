@@ -3,16 +3,16 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import ProjectInput from "@/components/ProjectInput";
+import { useProjectContext } from "@/app/context/ProjectContext";
 
 export default function Home() {
-  const [projects, setProjects] = useState([]);
   const [projectName, setProjectName] = useState("");
+  const { projects, addProject } = useProjectContext();
   const router = useRouter();
 
-  const addProject = () => {
+  const handleAddProject = () => {
     if (projectName.trim() === "") return;
-    const newProject = { id: Date.now(), name: projectName };
-    setProjects([...projects, newProject]);
+    addProject(projectName);
     setProjectName("");
   };
 
@@ -23,7 +23,7 @@ export default function Home() {
         <ProjectInput
           projectName={projectName}
           setProjectName={setProjectName}
-          addProject={addProject}
+          addProject={handleAddProject}
         />
         <ul className="mt-4">
           {projects.map((project) => (

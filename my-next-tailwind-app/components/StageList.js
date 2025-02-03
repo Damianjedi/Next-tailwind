@@ -16,6 +16,7 @@ export default function StageList({
 
   const [editMode, setEditMode] = useState(null); // tryb edycji celu
   const [editedText, setEditedText] = useState(""); // tekst edytowanego celu
+  
 
   return (
     <div className="w-full">

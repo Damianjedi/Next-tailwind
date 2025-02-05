@@ -9,7 +9,7 @@ export default function ProjectPage({ params }) {
   const { getProjectById } = useProjectContext();
   const unwrappedParams = use(params);
   
-  // Konwersja id na liczbę
+  
   const projectId = Number(unwrappedParams.id);
   const project = getProjectById(projectId);
 
@@ -31,7 +31,6 @@ export default function ProjectPage({ params }) {
     }
   }, [projectId]);
 
-  // 🔹 Aktualizacja `localStorage` za każdym razem, gdy `stages` się zmienia
   useEffect(() => {
     if (stages.length > 0) {
       localStorage.setItem(`stages-${projectId}`, JSON.stringify(stages));

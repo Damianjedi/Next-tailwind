@@ -8,25 +8,25 @@ export default function StageList({
   editGoal,
   deleteStage,
 }) {
-  const [goalInputs, setGoalInputs] = useState({}); // lokalny stan dla inputów
+  const [goalInputs, setGoalInputs] = useState({}); 
 
   const handleInputChange = (stageId, value) => {
     setGoalInputs((prev) => ({ ...prev, [stageId]: value }));
   };
 
-  const [editMode, setEditMode] = useState(null); // tryb edycji celu
-  const [editedText, setEditedText] = useState(""); // tekst edytowanego celu
+  const [editMode, setEditMode] = useState(null); 
+  const [editedText, setEditedText] = useState(""); 
   
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-30">
       {stages.map((stage) => (
-        <div key={stage.id} className="mb-6 bg-white p-4 rounded shadow">
+        <div key={stage.id} className="mb-6 bg-white p-4 rounded shadow-md">
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-xl font-semibold">{stage.name}</h2>
             <button
               onClick={() => deleteStage(stage.id)}
-              className="text-red-500 hover:text-red-700"
+              className="bg-red-500 text-white px-4 py-2 rounded transition duration-150 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
             >
               Usuń Etap
             </button>
@@ -36,7 +36,7 @@ export default function StageList({
               type="text"
               value={goalInputs[stage.id] || ""}
               onChange={(e) => handleInputChange(stage.id, e.target.value)}
-              className="flex-grow border p-2 rounded-l"
+              className="flex-grow border border-gray-300 p-3 rounded-l focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-150"
               placeholder="Cel etapu"
             />
             <button
@@ -44,7 +44,7 @@ export default function StageList({
                 addGoal(stage.id, goalInputs[stage.id] || "");
                 handleInputChange(stage.id, "");
               }}
-              className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600"
+              className="bg-green-500 text-white px-4 py-2 rounded-r hover:bg-green-600"
             >
               Dodaj Cel
             </button>
